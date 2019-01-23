@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:winmuapp/main.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -11,19 +12,26 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashState extends State<SplashPage> {
-
   Timer _timer;
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    _timer = new Timer(const Duration(milliseconds: 1500),(){
-      try{
-
-      }catch(e){
-
-      }
+    _timer = new Timer(const Duration(milliseconds: 1500), () {
+      try {
+        Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder<Null>(
+            pageBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+          return AnimatedBuilder(
+            animation: animation,
+            builder: (BuildContext context, Widget child){
+              return Opacity(  opacity: animation.value,
+                child: new MyApp());
+            },
+          );
+        }), (Route route) => route == null);
+      } catch (e) {}
     });
-
   }
 
   @override
@@ -34,7 +42,6 @@ class SplashState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return new Material(
       color: new Color.fromARGB(255, 0, 215, 198),
       child: Container(
@@ -45,7 +52,6 @@ class SplashState extends State<SplashPage> {
               color: Colors.white, fontSize: 50.0, fontWeight: FontWeight.bold),
         ),
       ),
-
     );
   }
 }

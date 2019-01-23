@@ -7,11 +7,36 @@ import './page/DiscoveryPage.dart';
 import './page/MyInfoPage.dart';
 import './page/NewsListPage.dart';
 import './page/TweetsListPage.dart';
+import './page/SplashPage.dart';
 import 'package:flutter/cupertino.dart';
 import './widget/MyDrawer.dart';
-import './widget/MyBottomNavigationBarFullDefault.dart' as MyBottomNavigationBar;
+import './widget/MyBottomNavigationBarFullDefault.dart'
+    as MyBottomNavigationBar;
+import 'package:redux/redux.dart';
 
-void main() => runApp(MyApp());
+
+
+void main() => runApp(App());
+
+class App extends StatelessWidget {
+  final Store<int> store;
+  final String title;
+
+  App({Key key, this.store, this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      theme: new ThemeData(
+        primaryIconTheme: const IconThemeData(color: Colors.white),
+        brightness: Brightness.light,
+        primaryColor: new Color.fromARGB(255, 0, 215, 198),
+        accentColor: Colors.cyan[300],
+      ),
+      home: SplashPage(),
+    );
+  }
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -24,9 +49,13 @@ class MainState extends State<MyApp> {
   final tabTextStyleNormal = new TextStyle(color: const Color(0xff969696));
   Color themeColor = ThemeUtils.currentColorTheme;
   int _tabIndex = 0;
-  var tabImages;
   var _body;
-  var pages;
+  var pages = <Widget>[
+    new NewsListPage(),
+    new TweetsListPage(),
+    new DiscoveryPage(),
+    new MyInfoPage()
+  ];
 
   Image getTabImage(path) {
     return new Image.asset(path, width: 20, height: 20);
@@ -49,53 +78,8 @@ class MainState extends State<MyApp> {
         themeColor = event.color;
       });
     });
-
-    pages = <Widget>[
-      new NewsListPage(),
-      new TweetsListPage(),
-      new DiscoveryPage(),
-      new MyInfoPage()
-    ];
-
-    if (tabImages == null) {
-      tabImages = [
-        [
-          getTabImage('images/ic_nav_news_normal.png'),
-          getTabImage('images/ic_nav_news_actived.png')
-        ],
-        [
-          getTabImage('images/ic_nav_tweet_normal.png'),
-          getTabImage('images/ic_nav_tweet_actived.png')
-        ],
-        [
-          getTabImage('images/ic_nav_discover_normal.png'),
-          getTabImage('images/ic_nav_discover_actived.png')
-        ],
-        [
-          getTabImage('images/ic_nav_my_normal.png'),
-          getTabImage('images/ic_nav_my_pressed.png')
-        ]
-      ];
-    }
   }
 
-  TextStyle getTabTextStyle(int curIndex) {
-    if (curIndex == _tabIndex) {
-      return tabTextStyleSelected;
-    }
-    return tabTextStyleNormal;
-  }
-
-  Image getTabIcon(int curIndex) {
-    if (curIndex == _tabIndex) {
-      return tabImages[curIndex][1];
-    }
-    return tabImages[curIndex][0];
-  }
-
-  Text getTabTitle(int curIndex) {
-    return new Text(appBarTitles[curIndex], style: getTabTextStyle(curIndex));
-  }
 
   void _handleTapboxChanged(int newValue) {
     print('devin $newValue');
@@ -103,7 +87,6 @@ class MainState extends State<MyApp> {
       _tabIndex = newValue;
     });
   }
-
 
   @override
   Widget build(BuildContext contex) {
@@ -114,32 +97,15 @@ class MainState extends State<MyApp> {
     return new MaterialApp(
       theme: new ThemeData(primaryColor: themeColor),
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text(appBarTitles[_tabIndex],
-              style: new TextStyle(color: Colors.white)),
-        ),
-        body: _body,
-        /*bottomNavigationBar: new CupertinoTabBar(
-          items: <BottomNavigationBarItem>[
-            new BottomNavigationBarItem(
-                icon: getTabIcon(0), title: getTabTitle(0)),
-            new BottomNavigationBarItem(
-                icon: getTabIcon(1), title: getTabTitle(1)),
-            new BottomNavigationBarItem(
-                icon: getTabIcon(2), title: getTabTitle(2)),
-            new BottomNavigationBarItem(
-                icon: getTabIcon(3), title: getTabTitle(3))
-          ],
-          currentIndex: _tabIndex,
-          onTap: (index) {
-            setState(() {
-              _tabIndex = index;
-            });
-          },
-        ),*/
-          bottomNavigationBar: new MyBottomNavigationBar.BottomNavigationBarFullDefault( onChanged: _handleTapboxChanged),
-        drawer: new MyDrawer()
-      ),
+          appBar: new AppBar(
+            title: new Text(appBarTitles[_tabIndex],
+                style: new TextStyle(color: Colors.white)),
+          ),
+          body: _body,
+          bottomNavigationBar:
+              new MyBottomNavigationBar.BottomNavigationBarFullDefault(
+                  onChanged: _handleTapboxChanged),
+          drawer: new MyDrawer()),
     );
   }
 }
