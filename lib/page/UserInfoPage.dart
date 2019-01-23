@@ -82,10 +82,8 @@ class MyInfoPageState extends State<MyInfoPage> {
                       ),
                     ),
                   ),
-                  new Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      new Expanded(
+
+                      new Container(
                         child: new Padding(
                           padding: const EdgeInsets.only(
                             top: 40.0,
@@ -96,27 +94,13 @@ class MyInfoPageState extends State<MyInfoPage> {
                           ),
                         ),
                       )
-                    ],
-                  ),
                 ],
               ),
             ),
           ),
           new SliverList(
               delegate: new SliverChildListDelegate(<Widget>[
-            new Container(
-              color: Colors.white,
-              child: new Padding(
-                padding: const EdgeInsets.only(
-                  top: 10.0,
-                  bottom: 10.0,
-                ),
-                child: new Row(  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                 //删除
-                ],),
-              ),
-            ),
+
                 new Container(
                   color: Colors.white,
                   margin: const EdgeInsets.only(top: 10.0),
@@ -124,7 +108,7 @@ class MyInfoPageState extends State<MyInfoPage> {
                     children: <Widget>[
                       new MenuItem(
                         icon: Icons.face,
-                        title: '车辆管理',
+                        title: '车辆管理1',
                       ),
                       new MenuItem(
                         icon: Icons.face,

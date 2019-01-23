@@ -3,10 +3,10 @@ import './utils/ThemeUtils.dart';
 import './utils/DataUtils.dart';
 import './utils//Constants.dart';
 import './utils/ChangeThemeEvent.dart';
-import './page/DiscoveryPage.dart';
-import './page/MyInfoPage.dart';
-import './page/NewsListPage.dart';
-import './page/TweetsListPage.dart';
+import './page/ChargePage.dart';
+import './page/UserInfoPage.dart';
+import './page/CarControlPage.dart';
+import './page/MainPage.dart';
 import './page/SplashPage.dart';
 import 'package:flutter/cupertino.dart';
 import './widget/MyDrawer.dart';
@@ -51,9 +51,10 @@ class MainState extends State<MyApp> {
   int _tabIndex = 0;
   var _body;
   var pages = <Widget>[
-    new NewsListPage(),
-    new TweetsListPage(),
-    new DiscoveryPage(),
+
+    new MainPage(),
+    new CarControlPage(),
+    new ChargePage(),
     new MyInfoPage()
   ];
 
