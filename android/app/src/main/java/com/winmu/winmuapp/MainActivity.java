@@ -1,4 +1,4 @@
-package com.example.winmuapp;
+package com.winmu.winmuapp;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
