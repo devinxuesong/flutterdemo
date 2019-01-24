@@ -4,6 +4,9 @@ import '../utils/NetUtils.dart';
 import 'dart:async';
 import 'dart:convert';
 import '../utils//Constants.dart';
+import 'package:winmuplugin/winmuplugin.dart';
+import 'package:flutter/services.dart';
+
 
 class CarControlPage extends StatefulWidget {
   @override
@@ -13,20 +16,13 @@ class CarControlPage extends StatefulWidget {
 }
 
 class CarControlPageState extends State<CarControlPage> {
-  final ScrollController _controller = new ScrollController();
-  final TextStyle titleTextStyle = new TextStyle(fontSize: 15);
-  final TextStyle subtitleStyle =
-      new TextStyle(color: const Color(0xFFB5BDC0), fontSize: 12.0);
-  var listData;
-  var slideView;
-  var curPage = 1;
-
-  var listTotalSize = 0;
+  String _platformVersion = 'Unknown';
 
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {});
+    initPlatformState();
+
   }
 
   @override
@@ -34,5 +30,21 @@ class CarControlPageState extends State<CarControlPage> {
     return new Center(
       child: new CircularProgressIndicator(),
     );
+  }
+
+  Future<void> initPlatformState() async {
+    String platformVersion;
+
+    try {
+      platformVersion = await Winmuplugin.platformVersion;
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+
+    if (!mounted) return;
+    setState(() {
+      _platformVersion = platformVersion;
+    });
   }
 }

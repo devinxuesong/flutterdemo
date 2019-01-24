@@ -15,7 +15,6 @@ import './widget/MyBottomNavigationBarFullDefault.dart'
 import 'package:redux/redux.dart';
 
 
-
 void main() => runApp(App());
 
 class App extends StatelessWidget {
@@ -50,6 +49,8 @@ class MainState extends State<MyApp> {
   Color themeColor = ThemeUtils.currentColorTheme;
   int _tabIndex = 0;
   var _body;
+
+
   var pages = <Widget>[
 
     new MainPage(),
@@ -99,7 +100,7 @@ class MainState extends State<MyApp> {
       theme: new ThemeData(primaryColor: themeColor),
       home: new Scaffold(
           appBar: new AppBar(
-            title: new Text(appBarTitles[_tabIndex],
+            title: new Text(appBarTitles[_tabIndex]+_platformVersion,
                 style: new TextStyle(color: Colors.white)),
           ),
           body: _body,
@@ -109,4 +110,6 @@ class MainState extends State<MyApp> {
           drawer: new MyDrawer()),
     );
   }
+
+
 }
