@@ -14,7 +14,6 @@ import './widget/MyBottomNavigationBarFullDefault.dart'
     as MyBottomNavigationBar;
 import 'package:redux/redux.dart';
 
-
 void main() => runApp(App());
 
 class App extends StatelessWidget {
@@ -25,11 +24,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      theme: new ThemeData(
+    return MaterialApp(
+      theme: ThemeData(
         primaryIconTheme: const IconThemeData(color: Colors.white),
         brightness: Brightness.light,
-        primaryColor: new Color.fromARGB(255, 0, 215, 198),
+        primaryColor: Color.fromARGB(255, 0, 215, 198),
         accentColor: Colors.cyan[300],
       ),
       home: SplashPage(),
@@ -39,28 +38,18 @@ class App extends StatelessWidget {
 
 class MyApp extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new MainState();
+  State<StatefulWidget> createState() => MainState();
 }
 
 class MainState extends State<MyApp> {
   final appBarTitles = ['主页', '车辆', '充电桩', '我的'];
-  final tabTextStyleSelected = new TextStyle(color: const Color(0xff63ca6c));
-  final tabTextStyleNormal = new TextStyle(color: const Color(0xff969696));
+  final tabTextStyleSelected = TextStyle(color: const Color(0xff63ca6c));
+  final tabTextStyleNormal = TextStyle(color: const Color(0xff969696));
   Color themeColor = ThemeUtils.currentColorTheme;
   int _tabIndex = 0;
-  var _body;
-
-
-  var pages = <Widget>[
-
-    new MainPage(),
-    new CarControlPage(),
-    new ChargePage(),
-    new MyInfoPage()
-  ];
 
   Image getTabImage(path) {
-    return new Image.asset(path, width: 20, height: 20);
+    return Image.asset(path, width: 20, height: 20);
   }
 
   @override
@@ -72,7 +61,7 @@ class MainState extends State<MyApp> {
       if (index != null) {
         ThemeUtils.currentColorTheme = ThemeUtils.supportColors[index];
         Constants.eventBus
-            .fire(new ChangeThemeEvent(ThemeUtils.supportColors[index]));
+            .fire(ChangeThemeEvent(ThemeUtils.supportColors[index]));
       }
     });
     Constants.eventBus.on<ChangeThemeEvent>().listen((event) {
@@ -82,7 +71,6 @@ class MainState extends State<MyApp> {
     });
   }
 
-
   void _handleTapboxChanged(int newValue) {
     print('devin $newValue');
     setState(() {
@@ -90,26 +78,29 @@ class MainState extends State<MyApp> {
     });
   }
 
+  var pages = <Widget>[
+    MainPage(),
+    CarControlPage(),
+    ChargePage(),
+    MyInfoPage()
+  ];
+
   @override
   Widget build(BuildContext contex) {
-    _body = new IndexedStack(
-      children: pages,
-      index: _tabIndex,
-    );
-    return new MaterialApp(
-      theme: new ThemeData(primaryColor: themeColor),
-      home: new Scaffold(
-          appBar: new AppBar(
-            title: new Text(appBarTitles[_tabIndex]+_platformVersion,
-                style: new TextStyle(color: Colors.white)),
+    print('devin main build $_tabIndex');
+
+    return MaterialApp(
+      theme: ThemeData(primaryColor: themeColor),
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text(appBarTitles[_tabIndex],
+                style: TextStyle(color: Colors.white)),
           ),
-          body: _body,
+          body: pages[_tabIndex],
           bottomNavigationBar:
-              new MyBottomNavigationBar.BottomNavigationBarFullDefault(
+              MyBottomNavigationBar.BottomNavigationBarFullDefault(
                   onChanged: _handleTapboxChanged),
-          drawer: new MyDrawer()),
+          drawer: MyDrawer()),
     );
   }
-
-
 }

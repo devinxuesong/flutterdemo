@@ -21,6 +21,7 @@ class ChargePageState extends State<ChargePage> {
   @override
   void initState() {
     super.initState();
+    print('devin ChargePage init');
     _controller.addListener(() {});
   }
 

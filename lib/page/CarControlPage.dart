@@ -7,7 +7,6 @@ import '../utils//Constants.dart';
 import 'package:winmuplugin/winmuplugin.dart';
 import 'package:flutter/services.dart';
 
-
 class CarControlPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -21,30 +20,36 @@ class CarControlPageState extends State<CarControlPage> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-
+    //initPlatformState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('devin  CarControlPage build');
     return new Center(
-      child: new CircularProgressIndicator(),
+      child: new RaisedButton(onPressed: initPlatformState,
+          child: new Text('跳转原生activity',style: new TextStyle(color: Colors.white))),
     );
   }
 
-  Future<void> initPlatformState() async {
-    String platformVersion;
+  void myPress() {}
 
+  Future<void> initPlatformState() async {
+    String result;
+    print('devin  CarControlPage myPress');
     try {
-      platformVersion = await Winmuplugin.platformVersion;
+      result = await Winmuplugin.jumotoactivty;
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      result = 'Failed to get jumotoactivty.';
     }
 
-
+    print('devin  CarControlPage result= $result');
     if (!mounted) return;
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('devin  CarControlPage dispose');
   }
 }
