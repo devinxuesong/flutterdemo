@@ -92,10 +92,10 @@ class MainState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(primaryColor: themeColor),
       home: Scaffold(
-          appBar: AppBar(
+    /*      appBar: AppBar(
             title: Text(appBarTitles[_tabIndex],
                 style: TextStyle(color: Colors.white)),
-          ),
+          ),*/
           body: pages[_tabIndex],
           bottomNavigationBar:
               MyBottomNavigationBar.BottomNavigationBarFullDefault(

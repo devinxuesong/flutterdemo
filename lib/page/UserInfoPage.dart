@@ -34,8 +34,11 @@ class MyInfoPageState extends State<MyInfoPage> {
     width: ARROW_ICON_WIDTH,
     height: ARROW_ICON_WIDTH,
   );
-  final String _userHead =
-      'http://a3.qpic.cn/psb?/V11GoRzM2Vse5R/*wGBFAcV4X2dSslW6P4t5w2m3Ro0BdkV.vfonfMRyjQ!/b/dCIBAAAAAAAA&ek=1&kp=1&pt=0&bo=QAZSCBAJEAwRED4!&tl=3&vuin=517367150&tm=1548144000&sce=60-2-2&rf=viewer_311';
+ // final String _userHead =
+ //     'http://a3.qpic.cn/psb?/V11GoRzM2Vse5R/*wGBFAcV4X2dSslW6P4t5w2m3Ro0BdkV.vfonfMRyjQ!/b/dCIBAAAAAAAA&ek=1&kp=1&pt=0&bo=QAZSCBAJEAwRED4!&tl=3&vuin=517367150&tm=1548144000&sce=60-2-2&rf=viewer_311';
+
+  String _userHead =
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548653561973&di=e5b294834c9a5891939c8c325b702d1c&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170720%2F8b000b96022d4ce189717fe93d9e1e0a_th.jpg";
 
   MyInfoPageState() {
     for (int i = 0; i < imagePaths.length; i++) {
