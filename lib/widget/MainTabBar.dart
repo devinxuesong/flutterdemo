@@ -19,8 +19,7 @@ class MainTabBarState extends State<MainTabBar>
   void initState() {
     super.initState();
     _scrollViewController = new ScrollController();
-    _tabController =
-        new TabController(vsync: this, length: 5); // 和下面的 TabBar.tabs 数量对应
+    _tabController = new TabController(vsync: this, length: 2);
   }
 
   @override
@@ -38,12 +37,26 @@ class MainTabBarState extends State<MainTabBar>
         children: <Widget>[
           Expanded(
               child: TabBarView(controller: _tabController, children: <Widget>[
-            Text('view 1'),
-            Text('view 2'),
-            Text('view 3'),
-            Text('view 4'),
-            Text('view 5'),
+            GridView.count(
+              crossAxisCount: 2,
+              primary: false,
+              padding: const EdgeInsets.all(10.0),
+              mainAxisSpacing: 4.0,
+              crossAxisSpacing: 8,
+              childAspectRatio: 2/1,
+              children: buildGridTileList(6, 0),
+            ),
+            GridView.count(
+              crossAxisCount: 2,
+              primary: false,
+              padding: const EdgeInsets.all(8.0),
+              mainAxisSpacing: 4.0,
+              crossAxisSpacing: 8,
+              childAspectRatio: 2/1,
+              children: buildGridTileList(6, 1),
+            ),
           ])),
+
           Container(
               child: new Align(
             alignment: Alignment.center,
@@ -53,4 +66,41 @@ class MainTabBarState extends State<MainTabBar>
       ),
     );
   }
+
+  List<Widget> buildGridTileList(int number, int index) {
+    List<Widget> widgetList = new List();
+    if(index == 1){
+      for (int i = 0; i < number; i++) {
+        widgetList.add(getItemWidget());
+      }
+    }else{
+      for (int i = 0; i < number; i++) {
+        widgetList.add(getItemWidget());
+      }
+    }
+
+
+    return widgetList;
+  }
+
+  String url =
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548653561973&di=e5b294834c9a5891939c8c325b702d1c&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170720%2F8b000b96022d4ce189717fe93d9e1e0a_th.jpg";
+
+  Widget getItemWidget() {
+    return Card(
+        child: Center(
+          child:  GridTile(
+            child: GridTileBar(
+              title: Text('title'),
+              leading: Icon(Icons.ac_unit),
+            ),
+          ),
+        ),
+      //
+      color: Colors.blue,
+      elevation: 5.0,
+    );
+  }
+
+
 }
