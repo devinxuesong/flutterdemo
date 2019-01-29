@@ -1,6 +1,5 @@
 group 'com.winmu.winmuplugin'
 version '1.0-SNAPSHOT'
-
 buildscript {
     repositories {
         google()
@@ -11,16 +10,13 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.2.1'
     }
 }
-
 rootProject.allprojects {
     repositories {
         google()
         jcenter()
     }
 }
-
 apply plugin: 'com.android.library'
-
 android {
     compileSdkVersion 27
 
@@ -31,4 +27,26 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+    repositories {
+        flatDir {
+            dirs 'libs'
+
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //implementation files('libs/flutter.jar')
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/BASE64.jar')
 }

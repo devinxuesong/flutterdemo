@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.winmu.winmuplugin">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.winmu.winmuplugin">
 
     <!-- The INTERNET permission is required for development. Specifically,
        flutter needs it to communicate with the running application
@@ -30,9 +31,15 @@
 
 
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name=".myApplication"
         android:label="winmuapp"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        tools:replace="android:name"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="vQOO4yuWGMAcOdc3l1BAnlpGsVTQgtU7" />
 
         <activity android:name=".TwoActivity"/>
 
