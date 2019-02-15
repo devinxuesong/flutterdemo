@@ -12,15 +12,15 @@ import 'package:flutter/cupertino.dart';
 import './widget/MyDrawer.dart';
 import './widget/MyBottomNavigationBarFullDefault.dart'
     as MyBottomNavigationBar;
-import 'package:redux/redux.dart';
+import 'package:rxdart/rxdart.dart';
 
 void main() => runApp(App());
 
 class App extends StatelessWidget {
-  final Store<int> store;
+ // final Store<int> store;
   final String title;
 
-  App({Key key, this.store, this.title}) : super(key: key);
+  App({Key key/*, this.store*/, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

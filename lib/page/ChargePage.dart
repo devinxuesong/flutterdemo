@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 import '../utils//Constants.dart';
 import 'package:winmuplugin/winmuplugin.dart';
+import 'package:bleplugin/bleplugin.dart';
 import 'package:flutter/services.dart';
 
 class ChargePage extends StatefulWidget {
@@ -16,25 +17,61 @@ class ChargePage extends StatefulWidget {
 
 class ChargePageState extends State<ChargePage> {
   String _platformVersion = 'Unknown';
+  double opacityLevel = 1.0;
+
+  _changeOpacity() {
+    setState(() => opacityLevel = opacityLevel == 0 ? 1.0 : 0.0);
+  }
 
   @override
   void initState() {
     super.initState();
-    //initPlatformState();
+
   }
 
   @override
   Widget build(BuildContext context) {
     print('devin  CarControlPage build');
     return new Center(
-      child: new RaisedButton(onPressed: initPlatformState,
-          child: new Text('跳转原生activity',style: new TextStyle(color: Colors.blue))),
-    );
+
+        child: new Column(
+      children: <Widget>[
+        RaisedButton(
+            onPressed: baiduMap,
+            child: new Text('跳转原生activity',
+                style: new TextStyle(color: Colors.blue))),
+        RaisedButton(
+            onPressed: initBle,
+            child: new Text('init',
+                style: new TextStyle(color: Colors.blue))),
+        RaisedButton(
+            onPressed: connectBle,
+            child: new Text('search',
+                style: new TextStyle(color: Colors.blue))),
+
+        RaisedButton(
+            onPressed: disConnectBle,
+            child: new Text('conn',
+                style: new TextStyle(color: Colors.blue))),
+
+        RaisedButton(
+            onPressed: platformVersion,
+            child: new Text('platformVersion',
+                style: new TextStyle(color: Colors.blue))),
+
+      ],
+    )
+
+        //new RaisedButton(onPressed: baiduMap,
+        //   child: new Text('跳转原生activity',style: new TextStyle(color: Colors.blue))),
+
+        );
   }
 
   void myPress() {}
 
-  Future<void> initPlatformState() async {
+  //跳转map
+  Future<void> baiduMap() async {
     String result;
     print('devin  CarControlPage myPress');
     try {
@@ -46,6 +83,66 @@ class ChargePageState extends State<ChargePage> {
     print('devin  CarControlPage result= $result');
     if (!mounted) return;
   }
+
+  //
+  Future<void> platformVersion() async {
+    String result;
+    print('devin  CarControlPage platformVersion');
+    try {
+      result = await Bleplugin.platformVersion;
+    } on PlatformException {
+      result = 'Failed to get initBle.';
+    }
+
+    print('devin  CarControlPage result= $result');
+    if (!mounted) return;
+  }
+
+  //
+  Future<void> initBle() async {
+    String result;
+    print('devin  CarControlPage initBle');
+    try {
+      result = await Bleplugin.initBle;
+    } on PlatformException {
+      result = 'Failed to get initBle.';
+    }
+
+    print('devin  CarControlPage result= $result');
+    if (!mounted) return;
+  }
+
+  //
+  Future<void> connectBle() async {
+    String result;
+    print('devin  CarControlPage connectBle');
+    try {
+      result = await Bleplugin.connectBle;
+    } on PlatformException {
+      result = 'Failed to get initBle.';
+    }
+
+    print('devin  CarControlPage result= $result');
+    if (!mounted) return;
+  }
+
+
+  //
+  Future<void> disConnectBle() async {
+    String result;
+    print('devin  CarControlPage disConnectBle');
+    try {
+      result = await Bleplugin.disConnectBle;
+    } on PlatformException {
+      result = 'Failed to get initBle.';
+    }
+
+    print('devin  CarControlPage result= $result');
+    if (!mounted) return;
+  }
+
+
+
 
   @override
   void dispose() {
