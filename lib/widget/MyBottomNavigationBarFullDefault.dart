@@ -13,7 +13,8 @@ class BottomNavigationBarFullDefault extends StatefulWidget {
   }
 }
 
-class _BottomNavigationBarFullDefault extends State<BottomNavigationBarFullDefault> {
+class _BottomNavigationBarFullDefault
+    extends State<BottomNavigationBarFullDefault> {
   int _currentIndex = 0;
 
   void _onItenTapped(int index) {
@@ -28,20 +29,46 @@ class _BottomNavigationBarFullDefault extends State<BottomNavigationBarFullDefau
     // TODO: implement build
 
     return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
+      type: BottomNavigationBarType.shifting,
       iconSize: 24.0,
       currentIndex: _currentIndex,
       onTap: _onItenTapped,
       fixedColor: Colors.deepPurple,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-            title: new Text("首页"), icon: new Icon(Icons.home)),
+            title: Text("车生活",style: TextStyle(fontSize: 0),),
+            icon: Image.asset(
+              "images/navi_bar_life_sel.png",
+              width: 92,
+              height: 56,
+            ),
+            backgroundColor: Color(0xFF506891)),
         BottomNavigationBarItem(
-            title: new Text("车辆"), icon: new Icon(Icons.directions_car)),
+            title: Text("我的爱车",style: TextStyle(fontSize: 0)),
+            icon: Image.asset(
+              "images/navi_bar_car_nor.png",
+              width: 92,
+              height: 56,
+            ),
+            backgroundColor: Color(0xFF506891)),
         BottomNavigationBarItem(
-            title: new Text("充电桩"), icon: new Icon(Icons.battery_charging_full)),
+          title: Text("车辆控制",style: TextStyle(fontSize: 0)),
+          icon: Image.asset(
+            "images/navi_bar_control_nor.png",
+            width: 92,
+            height: 56,
+          ),
+          backgroundColor: Color(0xFF506891),
+          //   activeIcon:new Image.asset('images/main_message.png'),
+        ),
         BottomNavigationBarItem(
-            title: new Text("我"), icon: new Icon(Icons.person)),
+            title: Text("我的",style: TextStyle(fontSize: 0)),
+            icon: Image.asset(
+              "images/navi_bar_my_nor.png",
+              width: 92,
+              height: 56,
+            ),
+            backgroundColor: Color(0xFF506891)),
       ],
     );
   }

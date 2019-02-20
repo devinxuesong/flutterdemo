@@ -18,6 +18,7 @@ class DataUtils {
 
   static final String SP_COLOR_THEME_INDEX = "colorThemeIndex";
 
+  static double statusBarHeight = 0.0;
 
   // 设置选择的主题色
   static setColorTheme(int colorThemeIndex) async {

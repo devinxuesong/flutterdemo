@@ -43,6 +43,7 @@ class _BannerState extends State<HomeBanner> {
   Widget build(BuildContext context) {
     return Container(
       height: 226.0,
+      margin: const EdgeInsets.only(right: 15,left: 15),
       child: Stack(alignment: Alignment.bottomCenter, children: <Widget>[
         PageView(
           controller: controller,

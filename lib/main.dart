@@ -17,10 +17,10 @@ import 'package:rxdart/rxdart.dart';
 void main() => runApp(App());
 
 class App extends StatelessWidget {
- // final Store<int> store;
+  // final Store<int> store;
   final String title;
 
-  App({Key key/*, this.store*/, this.title}) : super(key: key);
+  App({Key key /*, this.store*/, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class MainState extends State<MyApp> {
   final tabTextStyleSelected = TextStyle(color: const Color(0xff63ca6c));
   final tabTextStyleNormal = TextStyle(color: const Color(0xff969696));
   Color themeColor = ThemeUtils.currentColorTheme;
+
   int _tabIndex = 0;
 
   Image getTabImage(path) {
@@ -88,19 +89,23 @@ class MainState extends State<MyApp> {
   @override
   Widget build(BuildContext contex) {
     print('devin main build $_tabIndex');
-
+    ThemeData themeData = ThemeData.dark();
     return MaterialApp(
-      theme: ThemeData(primaryColor: themeColor),
+      //  theme: ThemeData(primaryColor: themeColor),
       home: Scaffold(
-    /*      appBar: AppBar(
-            title: Text(appBarTitles[_tabIndex],
-                style: TextStyle(color: Colors.white)),
-          ),*/
           body: pages[_tabIndex],
           bottomNavigationBar:
               MyBottomNavigationBar.BottomNavigationBarFullDefault(
                   onChanged: _handleTapboxChanged),
-          drawer: MyDrawer()),
+          drawer: MyDrawer()
+      ),
+    //     theme: themeData,
+     //   theme:ThemeData(brightness: Brightness.dark),
+      theme:   ThemeData(
+         // brightness: Brightness.dark
+       //   primarySwatch: Colors.blue,
+       //   textSelectionColor: Colors.red
+     ),
     );
   }
 }

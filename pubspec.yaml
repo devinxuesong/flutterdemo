@@ -83,7 +83,22 @@ flutter:
     - images/leftmenu/ic_settings.png
     - images/ic_osc_logo.png
     - images/ic_add_pics.png
-
+    - images/main_message.png
+    - images/main_logo_jietu.png
+    - images/main_logo_qirui.png
+    - images/navi_bar_car_nor.png
+    - images/navi_bar_control_nor.png
+    - images/navi_bar_life_sel.png
+    - images/navi_bar_my_nor.png
+    - images/main_info.png
+    - images/main_service.png
+    - images/main_subscribe.png
+    - images/main_csd.png
+    - images/main_riders.png
+    - images/main_book.png
+    - images/main_apply.png
+    - images/main_drive.png
+    - images/main_questionnaire.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

@@ -25,6 +25,17 @@ class MainTabBarState extends State<MainTabBar>
     "问卷调查",
     "预约试驾"
   ];
+  var _imageDataPath = [
+    "images/main_info.png",
+    "images/main_service.png",
+    "images/main_subscribe.png",
+    "images/main_csd.png",
+    "images/main_riders.png",
+    "images/main_book.png",
+    "images/main_apply.png",
+    "images/main_questionnaire.png",
+    "images/main_drive.png",
+  ];
 
   @override
   void initState() {
@@ -43,6 +54,7 @@ class MainTabBarState extends State<MainTabBar>
   @override
   Widget build(BuildContext context) {
     return new Container(
+      margin: const EdgeInsets.only(top: 31),
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -55,7 +67,7 @@ class MainTabBarState extends State<MainTabBar>
               mainAxisSpacing: 4.0,
               crossAxisSpacing: 8,
               childAspectRatio: 2 / 1,
-              children: buildGridTileList(6,6, 0),
+              children: buildGridTileList(6, 6, 0),
             ),
             GridView.count(
               crossAxisCount: 2,
@@ -64,7 +76,7 @@ class MainTabBarState extends State<MainTabBar>
               mainAxisSpacing: 4.0,
               crossAxisSpacing: 8,
               childAspectRatio: 2 / 1,
-              children: buildGridTileList(6,3, 1),
+              children: buildGridTileList(6, 3, 1),
             ),
           ])),
           Container(
@@ -77,7 +89,8 @@ class MainTabBarState extends State<MainTabBar>
     );
   }
 
-  List<Widget> buildGridTileList(int numberMax,int numberCurpage, int pageIndex) {
+  List<Widget> buildGridTileList(
+      int numberMax, int numberCurpage, int pageIndex) {
     List<Widget> widgetList = new List();
 
     for (int i = 0; i < numberCurpage; i++) {
@@ -91,13 +104,12 @@ class MainTabBarState extends State<MainTabBar>
       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548653561973&di=e5b294834c9a5891939c8c325b702d1c&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170720%2F8b000b96022d4ce189717fe93d9e1e0a_th.jpg";
 
   Widget getItemWidget(int numberMax, int pageIndex, int index) {
-
     return Card(
       child: Center(
         child: GridTile(
           child: GridTileBar(
-            title: Text(_itemData[pageIndex*numberMax+index]),
-            leading: Icon(Icons.ac_unit),
+            title: Text(_itemData[pageIndex * numberMax + index],style: TextStyle(fontSize: 17),),
+            leading: Image.asset(_imageDataPath[pageIndex * numberMax + index],width: 36,height: 36,),
           ),
         ),
       ),
