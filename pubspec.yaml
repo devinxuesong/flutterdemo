@@ -99,6 +99,7 @@ flutter:
     - images/main_apply.png
     - images/main_drive.png
     - images/main_questionnaire.png
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
